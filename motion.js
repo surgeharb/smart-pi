@@ -18,6 +18,14 @@ board.on('ready', () => {
   // proximal area is disrupted, generally by some form of movement
   motion.on('motionstart', () => {
     console.log('motionstart', Date.now());
+    const { exec } = require('child_process');
+    const child = exec('omxplayer sounds/sheyfak.ogg', (error, stdout, stderr) => {
+      console.log('stdout: ' + stdout);
+      console.log('stderr: ' + stderr);
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+    });
   });
 
   // 'motionend' events are fired following a 'motionstart' event
