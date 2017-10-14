@@ -7,7 +7,7 @@ const board = new five.Board({
 board.on('ready', () => {
 
   // Create a new `motion` hardware instance.
-  let led = new five.Led('P1-7');
+  let led = new five.Led('P1-13');
   led.blink();
 
 });
