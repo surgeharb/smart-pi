@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/surgeharb/smart-pi/issues"
   },
-  "homepage": "https://github.com/surgeharb/smart-pi#readme"
+  "homepage": "https://github.com/surgeharb/smart-pi#readme",
+  "dependencies": {
+    "johnny-five": "^0.11.6",
+    "raspi-io": "^8.1.0"
+  }
 }
