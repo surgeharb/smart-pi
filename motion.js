@@ -4,10 +4,10 @@ const board = new five.Board({
   io: new Raspi()
 });
 
-board.on('ready', function() {
+board.on('ready', () => {
 
   // Create a new `motion` hardware instance.
-  let motion = new five.IR.Motion('P1-13');
+  let motion = new five.Motion('P1-13');
 
   // 'calibrated' occurs once, at the beginning of a session,
   motion.on('calibrated', () => {
