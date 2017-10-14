@@ -20,8 +20,6 @@ board.on('ready', () => {
     console.log('motionstart', Date.now());
     const { exec } = require('child_process');
     const child = exec('omxplayer sounds/sheyfak.ogg', (error, stdout, stderr) => {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
       }
