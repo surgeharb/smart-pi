@@ -1,1 +1,1 @@
-# smart-pi
+# web-of-things
