@@ -3,7 +3,7 @@
  */
 const fs = require('fs');
 require('dotenv').config();
-const CONF = require('./config/_constants');
+const CONF = require('./config/config');
 
 const express = require('express');
 const api = express.Router();
