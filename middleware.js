@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const CONF = require('./config/config');
 
 module.exports = router => {

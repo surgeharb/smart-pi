@@ -10,7 +10,7 @@ const api = express.Router();
 const path = require('path');
 const app = express();
 
-const host = 'Server running at :' + configuration.PORT;
+const host = 'Server running at :' + process.env.PORT;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 app.use(bodyParser.json());
@@ -34,7 +34,7 @@ require('./libs/dbconnection')(mongoose).then(async log => {
 /**
  * Middlwares
  */
-const middleware = require('./middleware')(api, jwt);
+const middleware = require('./middleware')(api);
 app.use('/api', api);
 
 /**
