@@ -1,3 +1,5 @@
+const CONF = require('../config/config');
+
 module.exports.routes = (api, database) => {
 
   api.post('/login', (request, response, next) => {
@@ -14,7 +16,7 @@ module.exports.routes = (api, database) => {
     }
 
     if (verification) {
-      token = jwt.sign({ username: 'user' }, '$$/SOME_SECRET/$$');
+      token = jwt.sign({ username: 'user' }, CONF.secretJWT);
       return response.status(200).json({ 'message': 'Success', 'token': token });
     }
 
