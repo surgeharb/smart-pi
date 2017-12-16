@@ -14,10 +14,10 @@ module.exports.routes = (api, database) => {
 
     if (song !== 'alarm' && song !== 'ring') {
       song = await songs.findById(songId).exec();
-    } else if(song === 'alarm') {
-      song = CONF.sound.alarmUrl;
+    } else if (song === 'alarm') {
+      song = { 'url': CONF.sound.alarmUrl };
     } else if (song === 'ring') {
-      song = CONF.sound.ringUrl;
+      song = { 'url': CONF.sound.ringUrl };
     }
 
     if (!song) {
