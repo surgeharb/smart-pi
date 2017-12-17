@@ -27,6 +27,13 @@ app.listen(process.env.PORT, () => {
  */
 require('./libs/dbconnection')(mongoose).then(async log => {
   console.log(log);
+
+  require('./models/users').findOneAndUpdate(
+    { username: 'user' },
+    { username: 'user' },
+    { upsert: true }
+  ).lean().exec();
+
 }).catch(log => {
   console.log(log);
 });
