@@ -5,8 +5,28 @@ const CONF = require('../config/config');
 module.exports.routes = (api, database) => {
 
   api.get('/profile', async (request, response, next) => {
-    let user = await users.findOne({ username: 'user' }).lean().exec();
+    let user = await users.findOne({ username: 'user' }).exec();
+
+    let topGenre;
+    let maxIndex = 0;
+    let maxPlayed = 0;
+    let allUserPlays = user.songsTypesPlayed;
+    
+    allUserPlays.forEach((playsCount, index) => {
+      if (playsCount > maxPlayed) {
+        maxPlayed = playsCount;
+        maxIndex = index;
+      }
+    });
+
+    if (maxIndex === 0) {
+      topGenre = 'NONE';
+    } else {
+      topGenre = CONF.songsTypes[maxIndex];
+    }
+
     return response.status(200).json({
+      'topGenre': topGenre,
       'todayCount': CONF.stats.songsToday || 0,
       'totalCount': user.songsListenedTotal || 0
     });
