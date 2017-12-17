@@ -14,5 +14,8 @@ module.exports = {
     'Country',
     'Classical',
     'Electronic'
-  ]
+  ],
+  stats: {
+    'songsToday': 0
+  }
 }

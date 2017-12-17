@@ -1,5 +1,6 @@
 // Models
 const songs = require('../models/songs');
+const users = require('../models/users');
 
 // Utils
 const sound = require('../libs/sound');
@@ -14,18 +15,33 @@ module.exports.routes = (api, database) => {
 
     if (song !== 'alarm' && song !== 'ring') {
       song = await songs.findById(songId).exec();
+    
+      if (!song) {
+        return response.status(400).json({ 'message': 'bad request' });
+      }
+
+      CONF.stats.songsToday += 1;
+      let user = await users.findOneAndUpdate(
+        { username: 'user' },
+        { $inc: { 'songsListenedTotal': 1 } },
+        { new: true }
+      ).exec();
+
+      let newSongTypesCounter = user.songsTypesPlayed;
+      newSongTypesCounter[song.type] = newSongTypesCounter[song.type] + 1;
+
+      users.findOneAndUpdate(
+        { username: 'user' },
+        { $set: { 'songsTypesPlayed': newSongTypesCounter } },
+      ).exec();
     } else if (song === 'alarm') {
       song = { 'url': CONF.sound.alarmUrl };
     } else if (song === 'ring') {
       song = { 'url': CONF.sound.ringUrl };
     }
 
-    if (!song) {
-      return response.status(400).json({ 'message': 'bad request' });
-    }
-
     sound.play(song.url);
-    return response.status(200).json({ 'message': 'Success' });
+    return response.status(200).json({ 'message': 'Success.' });
   });
 
   api.post('/play/radio', async(request, response, next) => {

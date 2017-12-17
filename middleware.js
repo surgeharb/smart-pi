@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const users = require('./models/users');
 const CONF = require('./config/config');
 
 module.exports = router => {
@@ -10,18 +11,24 @@ module.exports = router => {
     console.log(request.url);
     console.log(request.headers);
 
-    if (request.url === '/login') {
-      next();
-    } else {
-      let token = request.headers.authorization.split(' ')[1];
-      jwt.verify(token, CONF.secretJWT, (err, decoded) => {
-        if (err) {
-          response.json({ 'message': 'Invalid Token' });
-        } else {
-          next();
-        }
-      });
-    }
+    next();
+
+    // if (request.url === '/login') {
+    //   next();
+    // } else {
+    //   let token = request.headers.authorization.split(' ')[1];
+    //   jwt.verify(token, CONF.secretJWT, (err, decoded) => {
+    //     if (err) {
+    //       response.json({ 'message': 'Invalid Token' });
+    //     } else {
+    //       request.body.preFetched = {
+    //         'user': await users.findOne({ username: 'user' }).lean().exec()
+    //       };
+
+    //       next();
+    //     }
+    //   });
+    // }
   });
 
 }
