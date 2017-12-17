@@ -1,5 +1,5 @@
 {
-  "name": "smart-pi",
+  "name": "web-of-things",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/surgeharb/smart-pi.git"
+    "url": "git+https://github.com/surgeharb/web-of-things.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/surgeharb/smart-pi/issues"
+    "url": "https://github.com/surgeharb/web-of-things/issues"
   },
-  "homepage": "https://github.com/surgeharb/smart-pi#readme",
+  "homepage": "https://github.com/surgeharb/web-of-things#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
