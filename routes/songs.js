@@ -44,12 +44,29 @@ module.exports.routes = (api, database) => {
     return response.status(200).json({ 'message': 'Success.' });
   });
 
-  api.post('/play/radio', async(request, response, next) => {
+  api.post('/play/radio', async (request, response, next) => {
     let type = request.body.radioType || 0;
     let songsArray = [];
 
     if (type === 0) {
-      songsArray = []; // recommend music
+      let maxIndex = 0;
+      let maxPlayed = 0;
+
+      let user = await users.findOne({ username: 'user' }).exec();
+      let allUserPlays = user.songsTypesPlayed;
+      
+      allUserPlays.forEach((playsCount, index) => {
+        if (playsCount > maxPlayed) {
+          maxPlayed = playsCount;
+          maxIndex = index;
+        }
+      });
+  
+      if (maxIndex === 0) {
+        maxIndex = 8;
+      }
+
+      songsArray = await songs.find({ 'type': type }).lean().exec();
     } else {
       songsArray = await songs.find({ 'type': type }).lean().exec();
     }
