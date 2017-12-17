@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const CONF = require('../config/config');
 
 module.exports.routes = (api, database) => {
@@ -17,9 +18,9 @@ module.exports.routes = (api, database) => {
 
     if (verification) {
       token = jwt.sign({ username: 'user' }, CONF.secretJWT);
-      return response.status(200).json({ 'message': 'Success', 'token': token });
+      return response.status(200).json({ 'message': 'Success.', 'token': token });
     }
 
-    return response.status(401).json({ 'message': 'Bad Credentials', 'token': token });
+    return response.status(401).json({ 'message': 'Bad Credentials.', 'token': token });
   });
 }

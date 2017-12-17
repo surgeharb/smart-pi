@@ -16,17 +16,15 @@ module.exports.routes = (api, database) => {
 
     let results = await listenings
       .aggregate()
-      .match()
-      .sort({ 'date': -1 })
+      .match({ userId: 'user' })
+      .sort({ date: -1 })
       .project({
-        'length': 1,
         'type': 1,
-        'day': {
-          $dayOfMonth: '$time'
-        }
+        'length': 1,
+        'dayOfTheMonth': 1
       }).group({
         '_id': {
-          day: '$day',
+          day: '$dayOfTheMonth',
           type: '$type'
         },
         'count': {
@@ -36,7 +34,7 @@ module.exports.routes = (api, database) => {
           $sum: '$length'
         }
       })
-      .lean().exec();
+      .exec();
     
     return response.status(200).json({
       'stats': results

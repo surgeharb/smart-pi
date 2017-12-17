@@ -1,6 +1,7 @@
 // Models
 const songs = require('../models/songs');
 const users = require('../models/users');
+const listenings = require('../models/listenings');
 
 // Utils
 const sound = require('../libs/sound');
@@ -14,26 +15,25 @@ module.exports.routes = (api, database) => {
     let song = request.body.songId || ObjectId();
 
     if (song !== 'alarm' && song !== 'ring') {
-      song = await songs.findById(songId).exec();
-    
+      try {
+        song = await songs.findById(song).lean().exec();
+      } catch (error) {
+        return next(error);
+      }
       if (!song) {
         return response.status(400).json({ 'message': 'bad request' });
       }
 
       CONF.stats.songsToday += 1;
-      let user = await users.findOneAndUpdate(
-        { username: 'user' },
-        { $inc: { 'songsListenedTotal': 1 } },
-        { new: true }
-      ).exec();
+      let user = await users.findOneAndUpdate({ username: 'user' }, { $inc: { 'songsListenedTotal': 1 } }, { new: true }).exec();
 
       let newSongTypesCounter = user.songsTypesPlayed;
       newSongTypesCounter[song.type] = newSongTypesCounter[song.type] + 1;
 
-      users.findOneAndUpdate(
-        { username: 'user' },
-        { $set: { 'songsTypesPlayed': newSongTypesCounter } },
-      ).exec();
+      users.findOneAndUpdate({ username: 'user' }, { $set: { 'songsTypesPlayed': newSongTypesCounter } }, ).exec();
+
+      song.dayOfTheMonth = new Date().getUTCDate() || 1;
+      await listenings.create(song);
     } else if (song === 'alarm') {
       song = { 'url': CONF.sound.alarmUrl };
     } else if (song === 'ring') {

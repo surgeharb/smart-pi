@@ -7,10 +7,7 @@ module.exports = router => {
   // route middleware that will happen on every request
   router.use((request, response, next) => {
 
-    console.log(request.method);
-    console.log(request.url);
-    console.log(request.headers);
-
+    console.log(`${request.method} ${request.url}`);
     next();
 
     // if (request.url === '/login') {

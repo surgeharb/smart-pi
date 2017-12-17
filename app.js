@@ -28,12 +28,15 @@ app.listen(process.env.PORT, () => {
 require('./libs/dbconnection')(mongoose).then(async log => {
   console.log(log);
 
+  // await require('./models/users').remove();
   require('./models/users').findOneAndUpdate(
     { username: 'user' },
     { username: 'user' },
     { upsert: true }
   ).lean().exec();
 
+  // await require('./models/songs').remove();
+  // require('./models/songs').insertMany(CONF.songsList);
 }).catch(log => {
   console.log(log);
 });
@@ -71,10 +74,6 @@ app.use((err, request, response, next) => {
   // set locals, only providing error in development
   response.locals.message = process.env.NODE_ENV === 'development' ? err.message : 'something bad happened :(';
   response.locals.error = process.env.NODE_ENV === 'development' ? err : {};
-
-  if (!err.status || err.status === 500) {
-    G.saveLog('mainThread', err, true);
-  }
 
   // send error message
   response.status(err.status || 500).json({ 'message': response.locals.message, 'error': response.locals.error });
