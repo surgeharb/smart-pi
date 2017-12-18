@@ -13,7 +13,15 @@ const app = express();
 const host = 'Server running at :' + process.env.PORT;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ 'extended': true }));
+
+app.use((request, response, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 /**
  * Listen to a given port

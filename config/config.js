@@ -21,73 +21,73 @@ module.exports = {
   songsList: [
     {
       "title": "Feel it still",
-      "length": 0,
+      "length": 175,
       "type": 1,
       "url": "https://pierreraii.com/cdn/Feel-It-Still.mp3"
     },
     {
       "title": "Say Nada (Remix)",
-      "length": 0,
+      "length": 180,
       "type": 1,
       "url": "https://pierreraii.com/cdn/Say-Nada.mp3"
     },
     {
       "title": "Cool kids",
-      "length": 0,
+      "length": 164,
       "type": 1,
       "url": "https://pierreraii.com/cdn/Cool-Kids.mp3"
     },
     {
       "title": "Baker street",
-      "length": 0,
+      "length": 150,
       "type": 2,
       "url": "https://pierreraii.com/cdn/Baker-Street.mp3"
     },
     {
       "title": "Take five",
-      "length": 0,
+      "length": 190,
       "type": 2,
       "url": "https://pierreraii.com/cdn/Take-Five.mp3"
     },
     {
       "title": "Equinox",
-      "length": 0,
+      "length": 181,
       "type": 2,
       "url": "https://pierreraii.com/cdn/Equinox.mp3"
     },
     {
       "title": "Sympathy for the devil",
-      "length": 0,
+      "length": 174,
       "type": 3,
       "url": "https://pierreraii.com/cdn/Sympathy-For-The-Devil.mp3"
     },
     {
       "title": "Fortunate son",
-      "length": 0,
+      "length": 159,
       "type": 3,
       "url": "https://pierreraii.com/cdn/Fortunate-Son.mp3"
     },
     {
       "title": "That's all",
-      "length": 0,
+      "length": 188,
       "type": 3,
       "url": "https://pierreraii.com/cdn/Thats-All.mp3"
     },
     {
       "title": "Deep deep water",
-      "length": 0,
+      "length": 200,
       "type": 4,
       "url": "https://pierreraii.com/cdn/Baker-Street.mp3"
     },
     {
       "title": "Stormy monday blues",
-      "length": 0,
+      "length": 170,
       "type": 4,
       "url": "https://pierreraii.com/cdn/Stormy-Monday-Blues.mp3"
     },
     {
       "title": "Broken hearted blues",
-      "length": 0,
+      "length": 183,
       "type": 4,
       "url": "https://pierreraii.com/cdn/Broken-Hearted-Blues.mp3"
     },
