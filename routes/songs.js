@@ -13,7 +13,7 @@ module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
     const { exec } = require('child_process');
-    exec(`npm run pause`, (error, stdout, stderr) => {
+    exec(`killall omxplayer`, (error, stdout, stderr) => {
       if (error !== null) {
         console.log(`exec error: ${error}`);
       }
@@ -60,8 +60,6 @@ module.exports.routes = (api, database) => {
     let type = request.body.radioType || 0;
     let songsArray = [];
 
-    console.log('type', type);
-
     if (type === 0) {
       let maxIndex = 0;
       let maxPlayed = 0;
@@ -84,8 +82,6 @@ module.exports.routes = (api, database) => {
     } else {
       songsArray = await songs.find({ 'type': type }).lean().exec();
     }
-
-    console.log('songsArray', songsArray);
 
     return response.status(200).json({
       'songs': songsArray,
