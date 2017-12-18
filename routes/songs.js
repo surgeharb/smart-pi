@@ -12,7 +12,12 @@ const ObjectId = require('mongodb').ObjectID;
 module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
-    sound.stop();
+    const { exec } = require('child_process');
+    exec(`omxplayer stop`, (error, stdout, stderr) => {
+      if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+    });
     return response.status(200).json({ 'message': 'Success.' });
   });
 
