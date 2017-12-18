@@ -49,6 +49,8 @@ module.exports.routes = (api, database) => {
     let type = request.body.radioType || 0;
     let songsArray = [];
 
+    console.log('type', type);
+
     if (type === 0) {
       let maxIndex = 0;
       let maxPlayed = 0;
