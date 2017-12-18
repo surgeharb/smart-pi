@@ -80,7 +80,7 @@ module.exports.routes = (api, database) => {
         maxIndex = 8;
       }
 
-      songsArray = await songs.find({ 'type': type }).lean().exec();
+      songsArray = await songs.find({ 'type': maxIndex }).lean().exec();
     } else {
       songsArray = await songs.find({ 'type': type }).lean().exec();
     }

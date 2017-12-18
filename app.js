@@ -43,8 +43,8 @@ require('./libs/dbconnection')(mongoose).then(async log => {
     { upsert: true }
   ).lean().exec();
 
-  await require('./models/songs').remove();
-  require('./models/songs').insertMany(CONF.songsList);
+  // await require('./models/songs').remove();
+  // require('./models/songs').insertMany(CONF.songsList);
 }).catch(log => {
   console.log(log);
 });
