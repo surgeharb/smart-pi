@@ -40,6 +40,7 @@ module.exports.routes = (api, database) => {
       song = { 'url': CONF.sound.ringUrl };
     }
 
+    console.log(song);
     sound.play(song.url);
     return response.status(200).json({ 'message': 'Success.' });
   });
