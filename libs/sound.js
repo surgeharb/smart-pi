@@ -13,9 +13,9 @@ let pause = module.exports.pause = () => {
  * @param {String} path Path of the song
  */
 let play = module.exports.play = path => {
+  pause();
   const { exec } = require('child_process');
   exec(`omxplayer '${path}'`, (error, stdout, stderr) => {
-    pause();
     if (error !== null) {
       console.log(`exec error: ${error}`);
     }
