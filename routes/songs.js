@@ -13,7 +13,7 @@ module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
     const { exec } = require('child_process');
-    exec(`\n\r`, (error, stdout, stderr) => {
+    exec(`npm restart`, (error, stdout, stderr) => {
       if (error !== null) {
         console.log(`exec error: ${error}`);
       }
@@ -43,7 +43,9 @@ module.exports.routes = (api, database) => {
 
       users.findOneAndUpdate({ username: 'user' }, { $set: { 'songsTypesPlayed': newSongTypesCounter } }, ).exec();
 
+      delete song._id;
       song.dayOfTheMonth = new Date().getUTCDate() || 1;
+
       await listenings.create(song);
     } else if (song === 'alarm') {
       song = { 'url': CONF.sound.alarmUrl };
