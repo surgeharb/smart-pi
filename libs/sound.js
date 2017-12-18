@@ -9,5 +9,6 @@ let play = module.exports.play = path => {
     if (error !== null) {
       console.log(`exec error: ${error}`);
     }
+    console.log(stdout);
   });
 }
