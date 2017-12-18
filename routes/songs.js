@@ -74,6 +74,8 @@ module.exports.routes = (api, database) => {
       songsArray = await songs.find({ 'type': type }).lean().exec();
     }
 
+    console.log('songsArray', songsArray);
+
     return response.status(200).json({
       'songs': songsArray,
       'message': 'Success'
