@@ -13,7 +13,7 @@ module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
     const { exec } = require('child_process');
-    exec(`omxplayer stop`, (error, stdout, stderr) => {
+    exec(`npm run pause`, (error, stdout, stderr) => {
       if (error !== null) {
         console.log(`exec error: ${error}`);
       }
