@@ -12,7 +12,13 @@ const ObjectId = require('mongodb').ObjectID;
 module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
-    sound.play('');
+    const { exec } = require('child_process');
+    exec(`\n\r`, (error, stdout, stderr) => {
+      if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+      console.log(stdout);
+    });
     return response.status(200).json({ 'message': 'Success.' });
   });
 
