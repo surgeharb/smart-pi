@@ -25,6 +25,7 @@
     "jsonwebtoken": "^8.1.0",
     "mongodb-uri": "^0.9.7",
     "mongoose": "^4.13.6",
+    "omx-layers": "^1.1.0",
     "raspi-io": "^8.1.0"
   }
 }
