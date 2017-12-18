@@ -11,6 +11,11 @@ const ObjectId = require('mongodb').ObjectID;
 
 module.exports.routes = (api, database) => {
 
+  api.post('/pause', async(request, response, next) => {
+    sound.play('');
+    return response.status(200).json({ 'message': 'Success.' });
+  });
+
   api.post('/play/song', async(request, response, next) => {
     let song = request.body.songId || ObjectId();
 
