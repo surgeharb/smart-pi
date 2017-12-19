@@ -19,6 +19,7 @@ const board = new five.Board({
  * Load hardware instances
  */
 board.on('ready', () => {
+  console.log('test here board ready');
   require('./hardware/button');
   require('./hardware/motion');
   require('./hardware/led');
