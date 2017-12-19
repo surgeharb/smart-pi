@@ -7,7 +7,7 @@ module.exports = {
   motionPin: '7',
 
   /** Button pin */
-  buttonPin: '1',
+  buttonPin: '23',
 
   /** JWT signing secret */
   secretJWT: '$$/SOME_SECRET/$$',
