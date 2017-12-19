@@ -4,7 +4,7 @@ module.exports = {
   ledController: {},
 
   /** LEDs pin */
-  ledsPin: '3',
+  ledsPin: '5',
 
   /** Motion sensor pin */
   motionPin: '7',
