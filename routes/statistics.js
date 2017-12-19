@@ -37,7 +37,7 @@ module.exports.routes = (api, database) => {
     let results = await listenings
       .aggregate()
       .match({ userId: 'user' })
-      .sort({ date: -1 })
+      .sort({ dayOfTheMonth: -1 })
       .project({
         'type': 1,
         'length': 1,
