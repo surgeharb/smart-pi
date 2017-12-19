@@ -2,7 +2,6 @@ const { exec } = require('child_process');
 const CONF = require('../config/config');
 const sound = require('../libs/sound');
 module.exports = five => {
-  console.log(`P1-${CONF.motionPin}`);
   // Create a new `motion` hardware instance.
   let motion = new five.Motion(`P1-${CONF.motionPin}`);
 
