@@ -13,7 +13,7 @@ module.exports = router => {
       return next();
     } else {
       let token = request.headers.authorization.split(' ')[1];
-      jwt.verify(token, CONF.secretJWT, (err, decoded) => {
+      jwt.verify(token, CONF.secretJWT, async(err, decoded) => {
         if (err) {
           response.json({ 'message': 'Invalid Token' });
         } else {
