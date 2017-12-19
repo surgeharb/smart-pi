@@ -23,7 +23,7 @@ board.on('ready', function() {
 
   require('./hardware/button')(five);
   require('./hardware/motion')(five);
-  // require('./hardware/led')(five);
+  require('./hardware/led')(five);
 });
 
 const express = require('express');
