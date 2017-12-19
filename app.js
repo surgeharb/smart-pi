@@ -21,7 +21,7 @@ const board = new five.Board({
 board.on('ready', function() {
   console.log('Board is ready!');
 
-  require('./hardware/button')(five);
+  // require('./hardware/button')(five);
   require('./hardware/motion')(five);
   require('./hardware/led')(five);
 });
