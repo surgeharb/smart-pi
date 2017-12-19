@@ -6,6 +6,9 @@ module.exports = {
   /** Motion sensor pin */
   motionPin: '7',
 
+  /** Button pin */
+  buttonPin: '10',
+
   /** JWT signing secret */
   secretJWT: '$$/SOME_SECRET/$$',
 
