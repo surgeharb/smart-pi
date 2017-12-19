@@ -33,7 +33,11 @@ module.exports.play = (path, noPause) => {
  * Triggers the alarm
  */
 module.exports.alarm = () => {
+  CONF.ledController.blink();
   module.exports.play(CONF.sound.alarmUrl);
+  setTimeout(() => {
+    CONF.ledController.off();
+  }, 1000);
 };
 
 /**
