@@ -5,16 +5,16 @@ module.exports = () => {
   // Create a new `button` hardware instance.
   let button = new five.Button(`P1-${CONF.buttonPin}`);
 
-  button.on('hold', () => {
+  button.on('hold', function() {
     console.log('Button held');
   });
 
-  button.on('press', () => {
+  button.on('press', function() {
     sound.ring();
     console.log('Button pressed');
   });
 
-  button.on('release', () => {
+  button.on('release', function() {
     console.log('Button released');
   });
 }

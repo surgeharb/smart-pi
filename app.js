@@ -15,13 +15,12 @@ const board = new five.Board({
   io: new Raspi()
 });
 
-require('./hardware/motion');
-
 /**
  * Load hardware instances
  */
-board.on('ready', () => {
-  console.log('test here board ready');
+board.on('ready', function() {
+  console.log('Board is ready!');
+
   require('./hardware/button');
   require('./hardware/motion');
   require('./hardware/led');
