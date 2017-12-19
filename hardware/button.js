@@ -6,12 +6,12 @@ module.exports = five => {
   let button = new five.Button(`P1-${CONF.buttonPin}`);
   console.log('btn:', button);
 
-  button.on('hold', function() {
+  button.on('hold', function () {
+    sound.ring();    
     console.log('Button held');
   });
 
   button.on('press', function() {
-    sound.ring();
     console.log('Button pressed');
   });
 
