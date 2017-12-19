@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "restart": "pm2 restart app",
+    "restart": "sudo pm2 restart app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
