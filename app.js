@@ -8,23 +8,23 @@ const CONF = require('./config/config');
 /**
  * Load hardware modules
  */
-const five = require('johnny-five');
-const Raspi = require('raspi-io');
+// const five = require('johnny-five');
+// const Raspi = require('raspi-io');
 
-const board = new five.Board({
-  io: new Raspi()
-});
+// const board = new five.Board({
+//   io: new Raspi()
+// });
 
-/**
- * Load hardware instances
- */
-board.on('ready', function() {
-  console.log('Board is ready!');
+// /**
+//  * Load hardware instances
+//  */
+// board.on('ready', function() {
+//   console.log('Board is ready!');
 
-  require('./hardware/button')(five);
-  require('./hardware/motion')(five);
-  // require('./hardware/led')(five);
-});
+//   require('./hardware/button')(five);
+//   require('./hardware/motion')(five);
+//   // require('./hardware/led')(five);
+// });
 
 // PubNub SDK
 // const PubNub = require('pubnub');
