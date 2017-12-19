@@ -15,6 +15,8 @@ const board = new five.Board({
   io: new Raspi()
 });
 
+require('./hardware/motion');
+
 /**
  * Load hardware instances
  */

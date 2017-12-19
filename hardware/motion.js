@@ -1,12 +1,13 @@
-const { exec } = require('child_process');
-const CONF = require('../config/config');
-const sound = require('../libs/sound');
 const five = require('johnny-five');
+const Raspi = require('raspi-io');
+const board = new five.Board({
+  io: new Raspi()
+});
 
-module.exports = () => {
-  console.log(`P1-${CONF.motionPin}`);
+board.on('ready', () => {
+
   // Create a new `motion` hardware instance.
-  let motion = new five.Motion(`P1-${CONF.motionPin}`);
+  let motion = new five.Motion('P1-7');
 
   // 'calibrated' occurs once, at the beginning of a session,
   motion.on('calibrated', () => {
@@ -17,8 +18,12 @@ module.exports = () => {
   // proximal area is disrupted, generally by some form of movement
   motion.on('motionstart', () => {
     console.log('motionstart', Date.now());
-
-    sound.ring() && console.log('should ring the bell');
+    const { exec } = require('child_process');
+    const child = exec('omxplayer sounds/sheyfak.ogg', (error, stdout, stderr) => {
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      }
+    });
   });
 
   // 'motionend' events are fired following a 'motionstart' event
@@ -26,4 +31,4 @@ module.exports = () => {
   motion.on('motionend', () => {
     console.log('motionend', Date.now());
   });
-}
+});
