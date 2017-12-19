@@ -26,6 +26,10 @@ board.on('ready', function() {
   // require('./hardware/led')(five);
 });
 
+// PubNub SDK
+const PubNub = require('pubnub');
+require('./libs/pubnub').initialize();
+
 const express = require('express');
 const api = express.Router();
 const path = require('path');
