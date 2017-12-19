@@ -8,24 +8,24 @@ module.exports = router => {
   router.use((request, response, next) => {
 
     console.log(`${request.method} ${request.url}`);
-    next();
 
-    // if (request.url === '/login') {
-    //   next();
-    // } else {
-    //   let token = request.headers.authorization.split(' ')[1];
-    //   jwt.verify(token, CONF.secretJWT, (err, decoded) => {
-    //     if (err) {
-    //       response.json({ 'message': 'Invalid Token' });
-    //     } else {
-    //       request.body.preFetched = {
-    //         'user': await users.findOne({ username: 'user' }).lean().exec()
-    //       };
+    if (process.env.NODE_ENV === 'development' || request.url === '/login') {
+      return next();
+    } else {
+      let token = request.headers.authorization.split(' ')[1];
+      jwt.verify(token, CONF.secretJWT, (err, decoded) => {
+        if (err) {
+          response.json({ 'message': 'Invalid Token' });
+        } else {
+          request.body.preFetched = {
+            'user': await users.findOne({ username: 'user' }).lean().exec()
+          };
 
-    //       next();
-    //     }
-    //   });
-    // }
+          return next();
+        }
+      });
+    }
+
   });
 
 }

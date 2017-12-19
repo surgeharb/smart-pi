@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "pause": "pm2 restart app",
+    "restart": "pm2 restart app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,7 +25,6 @@
     "jsonwebtoken": "^8.1.0",
     "mongodb-uri": "^0.9.7",
     "mongoose": "^4.13.6",
-    "omx-layers": "^1.1.0",
     "raspi-io": "^8.1.0"
   }
 }

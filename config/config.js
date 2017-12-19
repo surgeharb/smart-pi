@@ -1,9 +1,21 @@
 module.exports = {
+
+  /** LEDs pin */
+  ledsPin: '12',
+
+  /** Motion sensor pin */
+  motionPin: '7',
+
+  /** JWT signing secret */
   secretJWT: '$$/SOME_SECRET/$$',
+
+  /** Needed sound paths */
   sound: {
-    'ringUrl': 'http://files.sergeharb.com/sounds/ring.mp3',
-    'alarmUrl': 'http://files.sergeharb.com/sounds/alarm.mp3'
+    'ringUrl': './sounds/ring.mp3',
+    'alarmUrl': './sounds/alarm.mp3'
   },
+
+  /** Available songs types */
   songsTypes: [
     'Recommended',
     'Pop',
@@ -15,9 +27,13 @@ module.exports = {
     'Classical',
     'Electronic'
   ],
+
+  /** Storing temporary statistics */
   stats: {
     'songsToday': 0
   },
+
+  /** Songs list for first time run */
   songsList: [
     {
       "title": "Feel it still",

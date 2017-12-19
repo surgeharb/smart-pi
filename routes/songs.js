@@ -13,7 +13,7 @@ module.exports.routes = (api, database) => {
 
   api.post('/pause', async(request, response, next) => {
     sound.pause();
-    return response.status(200).json({ 'message': 'Success.' });
+    return response.status(200).json({ 'message': 'Success' });
   });
 
   api.post('/play/song', async(request, response, next) => {
@@ -25,6 +25,7 @@ module.exports.routes = (api, database) => {
       } catch (error) {
         return next(error);
       }
+
       if (!song) {
         return response.status(400).json({ 'message': 'bad request' });
       }
@@ -37,17 +38,21 @@ module.exports.routes = (api, database) => {
 
       users.findOneAndUpdate({ username: 'user' }, { $set: { 'songsTypesPlayed': newSongTypesCounter } }, ).exec();
 
+      // Prepare listening data
       delete song._id;
       song.dayOfTheMonth = new Date().getUTCDate() || 1;
 
+      // Create statistic listening log
       await listenings.create(song);
+
+      // Play the desired song
+      sound.play(song.url);
     } else if (song === 'alarm') {
-      song = { 'url': CONF.sound.alarmUrl };
+      sound.alarm();
     } else if (song === 'ring') {
-      song = { 'url': CONF.sound.ringUrl };
+      sound.ring();
     }
 
-    sound.play(song.url);
     return response.status(200).json({ 'message': 'Success.' });
   });
 
@@ -56,12 +61,14 @@ module.exports.routes = (api, database) => {
     let songsArray = [];
 
     if (type === 0) {
+      /** MaxIndex point to the most listened genre index  */
       let maxIndex = 0;
       let maxPlayed = 0;
 
       let user = await users.findOne({ username: 'user' }).exec();
       let allUserPlays = user.songsTypesPlayed;
       
+      // Get the maximum of genre played
       allUserPlays.forEach((playsCount, index) => {
         if (playsCount > maxPlayed) {
           maxPlayed = playsCount;
@@ -69,6 +76,7 @@ module.exports.routes = (api, database) => {
         }
       });
   
+      // Set default to last index if not found any
       if (maxIndex === 0) {
         maxIndex = 8;
       }

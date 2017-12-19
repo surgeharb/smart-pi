@@ -5,6 +5,25 @@ const fs = require('fs');
 require('dotenv').config();
 const CONF = require('./config/config');
 
+/**
+ * Load hardware modules
+ */
+const five = require('johnny-five');
+const Raspi = require('raspi-io');
+
+const board = new five.Board({
+  io: new Raspi()
+});
+
+/**
+ * Load hardware instances
+ */
+board.on('ready', () => {
+  require('./hardware/button');
+  require('./hardware/motion');
+  require('./hardware/led');
+});
+
 const express = require('express');
 const api = express.Router();
 const path = require('path');

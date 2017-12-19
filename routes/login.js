@@ -12,15 +12,15 @@ module.exports.routes = (api, database) => {
       return response.status(400).json({ 'message': 'bad request' });
     }
 
-    if (req.username === 'user' && req.password === 'pass') {
+    if (req.username === process.env.USER && req.password === process.env.PASS) {
       verification = true;
     }
 
     if (verification) {
       token = jwt.sign({ username: 'user' }, CONF.secretJWT);
-      return response.status(200).json({ 'message': 'Success.', 'token': token });
+      return response.status(200).json({ 'message': 'Success', 'token': token });
     }
 
-    return response.status(401).json({ 'message': 'Bad Credentials.', 'token': token });
+    return response.status(401).json({ 'message': 'Bad Credentials', 'token': token });
   });
 }
