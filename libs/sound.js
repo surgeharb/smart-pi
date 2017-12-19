@@ -18,7 +18,8 @@ module.exports.pause = () => {
  * @param {String} path Path of the song
  */
 module.exports.play = path => {
-  module.exports.pause() && exec(`omxplayer '${path}'`, (error, stdout, stderr) => {
+  module.exports.pause();
+  exec(`omxplayer '${path}'`, (error, stdout, stderr) => {
     if (error !== null) {
       console.log(`exec error: ${error}`);
     }
