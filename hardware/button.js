@@ -7,11 +7,11 @@ module.exports = five => {
   console.log('btn:', button);
 
   button.on('hold', function () {
-    sound.ring();    
     console.log('Button held');
   });
 
   button.on('press', function() {
+    sound.ring();    
     console.log('Button pressed');
   });
 
