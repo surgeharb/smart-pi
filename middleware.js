@@ -5,7 +5,7 @@ const CONF = require('./config/config');
 module.exports = router => {
 
   // route middleware that will happen on every request
-  router.use((request, response, next) => {
+  router.use(async(request, response, next) => {
 
     console.log(`${request.method} ${request.url}`);
 
