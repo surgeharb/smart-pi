@@ -27,8 +27,8 @@ board.on('ready', function() {
 });
 
 // PubNub SDK
-// const PubNub = require('pubnub');
-// require('./libs/pubnub').initialize();
+const PubNub = require('pubnub');
+require('./libs/pubnub').initialize();
 
 const express = require('express');
 const api = express.Router();
